@@ -1,0 +1,54 @@
+div {
+  outline: none;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  background-color: green;
+  color: white;
+  font-size: 20px;
+  margin: 3px;
+  border-radius: 3px;
+  border: none;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input{
+  padding: 5px;
+  padding-top:7px ;
+  padding-bottom: 7px;
+  font-size: 20px;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid gray;
+  margin: 3px;
+}
+input:focus{
+  border: 1px solid green;
+}
+
+select{
+  padding: 5px;
+  padding-top:7px ;
+  padding-bottom: 7px;
+  font-size: 20px;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid gray;
+  margin: 3px;
+}
+select:focus{
+  border: 1px solid green;
+}
+
+button:active{
+  opacity: 0.7;
+}
+svg:active{
+  opacity: 0.7;
+}
