@@ -1,16 +1,13 @@
-import React from "react"
-import {
-  Route,
-  Switch
-} from "react-router-dom";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 
-import withAuth from '../components/withAuth';
+import withAuth from "../components/withAuth";
 
-import Home from './Home';
-import Login from './Login';
-import Users from './Users';
-import Farmers from './Farmers';
-
+import Home from "./Home";
+import Login from "./Login";
+import Users from "./Users";
+import Farmers from "./Farmers";
+import Settings from "./Settings";
 
 class Main extends React.Component {
   render() {
@@ -19,10 +16,11 @@ class Main extends React.Component {
         <Route exact path="/" component={Home} />
         <Route path="/users" component={Users} />
         <Route path="/farmers" component={Farmers} />
+        <Route path="/settings" component={Settings} />
         <Route exact path="/login" component={Login} />
       </Switch>
-    )
+    );
   }
 }
 
-export default withAuth(Main)
+export default withAuth(Main);

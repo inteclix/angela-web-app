@@ -1,10 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
 class WebServices {
   constructor() {
-    this.domain = 'http://angela-server.epizy.com/api';
+    this.domain =
+      "https://8000-e8f003b2-6abb-4d25-a42c-544e2c4a4e10.ws-eu01.gitpod.io/api";
     this.user = null;
-    this.id_token = "token"
+    this.id_token = "token";
   }
 
   setUser(user) {
@@ -24,12 +25,12 @@ class WebServices {
       return Promise.resolve(res);
     });*/
     return this._axios()
-      .post('/auth/login', {
+      .post("/auth/login", {
         username,
-        password,
+        password
       })
       .then(res => {
-        console.dir(res)
+        console.dir(res);
         this.setToken(res.data.data.token); // Setting the token in localStorage
         return Promise.resolve(res);
       });
@@ -37,20 +38,20 @@ class WebServices {
 
   logout() {
     // Clear user token and profile data from localStorage
-    localStorage.removeItem('id_token');
+    localStorage.removeItem("id_token");
   }
 
   setToken(id_token) {
     // Saves user token to localStorage
-    localStorage.setItem('id_token', id_token);
+    localStorage.setItem("id_token", id_token);
     this.id_token = id_token;
-    console.log('setToken' + id_token);
+    console.log("setToken" + id_token);
   }
 
   getToken() {
     // Retrieves the user token from localStorage
-    const id_token = localStorage.getItem('id_token');
-    console.log('getToken ' + id_token);
+    const id_token = localStorage.getItem("id_token");
+    console.log("getToken " + id_token);
     this.id_token = id_token;
     return id_token;
   }
@@ -60,7 +61,7 @@ class WebServices {
     //console.log(decode(this.getToken()));
     //return decode(this.getToken());
     return this._axios()
-      .get('/auth/me')
+      .get("/auth/me")
       .then(res => {
         this.setUser(res.data);
         return Promise.resolve(res);
@@ -71,92 +72,63 @@ class WebServices {
     // Using jwt-decode npm package to decode the token
     //console.log(decode(this.getToken()));
     //return decode(this.getToken());
-    return this._axios().get('/auth/users');
+    return this._axios().get("/auth/users");
   }
 
   async getUser(id) {
-    return this._axios().get('/auth/users/' + id);
+    return this._axios().get("/auth/users/" + id);
   }
 
   async deleteUser(id) {
-    return this._axios().delete('/auth/users/' + id);
+    return this._axios().delete("/auth/users/" + id);
   }
 
   async addUser(user) {
-    return this._axios().post('/auth/users', {...user}).then(res => {
-      return Promise.resolve(res);
-    });
+    return this._axios()
+      .post("/auth/users", { ...user })
+      .then(res => {
+        return Promise.resolve(res);
+      });
   }
 
   async editUser(user) {
-    return this._axios().put('/auth/users/' + user.id, {...user})
+    return this._axios().put("/auth/users/" + user.id, { ...user });
   }
 
   async getFarmers() {
     // Using jwt-decode npm package to decode the token
     //console.log(decode(this.getToken()));
     //return decode(this.getToken());
-    return this._axios().get('/farmers');
+    return this._axios().get("/farmers");
   }
 
   async getFarmer(id) {
-    return this.fetch('/farmers/' + id, {
-      method: 'GET',
-    });
+    return this._axios().get("/farmers/" + id);
   }
 
   async deleteFarmer(id) {
-    return this.fetch('/farmers/' + id, {
-      method: 'DELETE',
-    });
+    return this._axios().delete("/farmers/" + id);
   }
 
   async addFarmer(state) {
-    return this._axios().post('/farmers/' , {...state});
+    return this._axios().post("/farmers/", { ...state });
   }
 
-  async editFarmer(
-    id,
-    username,
-    password,
-    firstname,
-    lastname,
-    tel,
-    role,
-    img1,
-    img2,
-    img3
-  ) {
-    return this.fetch('auth/farmers/' + id, {
-      method: 'PUT',
-      body: JSON.stringify({
-        username,
-        password,
-        firstname,
-        lastname,
-        tel,
-        role,
-        img1,
-        img2,
-        img3,
-      }),
-    }).then(res => {
-      this.setToken(res.data.token); // Setting the token in localStorage
-      return Promise.resolve(res);
-    });
+  async editFarmer(state) {
+    return this._axios().put("/farmers/" + state.id, { ...state });
   }
 
   fetch(url, options) {
     // performs api calls sending the required authentication headers
     const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.id_token,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + this.id_token
     };
 
     return fetch(`${this.domain}/${url}`, {
       headers,
-      ...options,
+      ...options
     })
       .then(this._checkStatus)
       .then(response => response.json());
@@ -164,15 +136,15 @@ class WebServices {
 
   _axios(options) {
     const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.getToken(),
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + this.getToken()
     };
 
     return axios.create({
       baseURL: this.domain,
       headers,
-      ...options,
+      ...options
     });
   }
 
