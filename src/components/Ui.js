@@ -11,7 +11,9 @@ export const Label = ({ children, label }) => (
       borderLeftStyle: "solid"
     }}
   >
-    <label style={{ margin: 5, textAlign: "right" }}>{label}</label>
+    <label style={{ margin: 5, textAlign: "right", fontSize: 20 }}>
+      {label}
+    </label>
     {children}
   </div>
 );
