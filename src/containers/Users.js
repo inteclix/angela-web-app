@@ -43,7 +43,7 @@ class All extends React.Component {
     }
     return (
       <div style={{ flex: 1 }}>
-        <Header back history={this.props.history} title="Users" />
+        <Header back history={this.props.history} title="الكل" />
         {this.state.users.length === 0 && (
           <div
             style={{
@@ -70,7 +70,7 @@ class All extends React.Component {
                 }}
               >
                 <div style={{ flex: 1, padding: 3 }}>
-                  <div>Username: {user.username}</div>
+                  <div>username : {user.username}</div>
                   <div>{user.firstname + " " + user.lastname}</div>
                 </div>
                 <IoMdTrash
@@ -137,9 +137,9 @@ class Add extends React.Component {
   render() {
     return (
       <div>
-        <Header back history={this.props.history} title="Add user" />
+        <Header back history={this.props.history} title="إضافة جديدة" />
         <div>
-          <Label label="Username">
+          <Label label="إسم المستخدم">
             <input
               onChange={e => {
                 this.setState({ username: e.target.value });
@@ -148,7 +148,7 @@ class Add extends React.Component {
               placeholder="username"
             />
           </Label>
-          <Label label="Password">
+          <Label label="الرقم السري">
             <input
               onChange={e => {
                 this.setState({ password: e.target.value });
@@ -158,7 +158,7 @@ class Add extends React.Component {
               placeholder="password"
             />
           </Label>
-          <Label label="firstname">
+          <Label label="الإسم">
             <input
               onChange={e => {
                 this.setState({ firstname: e.target.value });
@@ -167,7 +167,7 @@ class Add extends React.Component {
               placeholder="firstname"
             />
           </Label>
-          <Label label="lastname">
+          <Label label="اللقب">
             <input
               onChange={e => {
                 this.setState({ lastname: e.target.value });
@@ -176,7 +176,7 @@ class Add extends React.Component {
               placeholder="lastname"
             />
           </Label>
-          <Label label="Tel">
+          <Label label="الهاتف">
             <input
               onChange={e => {
                 this.setState({ tel: e.target.value });
@@ -185,18 +185,18 @@ class Add extends React.Component {
               placeholder="tel"
             />
           </Label>
-          <Label label="Role">
+          <Label label="رتبة المستخدم">
             <select
               onChange={e => {
                 this.setState({ role: e.target.value });
               }}
               value={this.state.role}
             >
-              <option value="admin">Admin</option>
-              <option value="user">User</option>
+              <option value="admin">مشرف</option>
+              <option value="user">مستخدم عادي</option>
             </select>
           </Label>
-          <Label label="Is active">
+          <Label label="تفعيل الحساب">
             <input
               type="checkbox"
               onChange={e => {
@@ -206,7 +206,7 @@ class Add extends React.Component {
               placeholder="is_active"
             />
           </Label>
-          <button onClick={() => this._create()}>Create</button>
+          <button onClick={() => this._create()}>إنشاء</button>
         </div>
       </div>
     );
@@ -269,9 +269,9 @@ class Edit extends React.Component {
     }
     return (
       <div>
-        <Header back history={this.props.history} title="Edit user" />
+        <Header back history={this.props.history} title="تعدبل" />
         <div>
-          <Label label="Username">
+          <Label label="إسم المستخدم">
             <input
               onChange={e => {
                 this.setState({ username: e.target.value });
@@ -280,7 +280,7 @@ class Edit extends React.Component {
               placeholder="username"
             />
           </Label>
-          <Label label="Password">
+          <Label label="الرقم السري">
             <input
               onChange={e => {
                 this.setState({ password: e.target.value });
@@ -290,7 +290,7 @@ class Edit extends React.Component {
               placeholder="password"
             />
           </Label>
-          <Label label="firstname">
+          <Label label="الإسم">
             <input
               onChange={e => {
                 this.setState({ firstname: e.target.value });
@@ -299,7 +299,7 @@ class Edit extends React.Component {
               placeholder="firstname"
             />
           </Label>
-          <Label label="lastname">
+          <Label label="اللقب">
             <input
               onChange={e => {
                 this.setState({ lastname: e.target.value });
@@ -308,7 +308,7 @@ class Edit extends React.Component {
               placeholder="lastname"
             />
           </Label>
-          <Label label="Tel">
+          <Label label="الهاتف">
             <input
               onChange={e => {
                 this.setState({ tel: e.target.value });
@@ -317,18 +317,18 @@ class Edit extends React.Component {
               placeholder="tel"
             />
           </Label>
-          <Label label="Role">
+          <Label label="رتبة المستخدم">
             <select
               onChange={e => {
                 this.setState({ role: e.target.value });
               }}
               value={this.state.role}
             >
-              <option value="admin">Admin</option>
-              <option value="user">User</option>
+              <option value="admin">مشرف</option>
+              <option value="user">مستخدم عادي</option>
             </select>
           </Label>
-          <Label label="Is active">
+          <Label label="تفعيل الحساب">
             <input
               type="checkbox"
               onChange={e => {
@@ -338,7 +338,7 @@ class Edit extends React.Component {
               placeholder="is_active"
             />
           </Label>
-          <button onClick={() => this._update()}>Update</button>
+          <button onClick={() => this._update()}>تحديث</button>
         </div>
       </div>
     );

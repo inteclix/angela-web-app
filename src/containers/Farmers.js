@@ -71,9 +71,9 @@ class All extends React.Component {
                 }}
               >
                 <div style={{ flex: 1, padding: 3 }}>
-                  <div>Farme name : {farmer.farm_name}</div>
-                  <div>create by : {farmer.user.username}</div>
-                  <div>created at : {farmer.created_at}</div>
+                  <div>إسم المزرعة  : {farmer.farm_name}</div>
+                  <div>إنشاء من طرف : {farmer.user.username}</div>
+                  <div>تاريخ الإنشاء : {farmer.created_at}</div>
                 </div>
                 <IoMdTrash
                   onClick={() => {
