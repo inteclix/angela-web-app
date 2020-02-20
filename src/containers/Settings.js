@@ -8,10 +8,15 @@ class Setting extends React.Component {
   constructor() {
     super();
     this.state = {
-      percentCompleted: 0
+      percentCompleted: 0,
+      user: null,
+      loading: true
     };
     this.fileImg1 = React.createRef();
     window.fileimg1 = this.fileImg1;
+    WebServices.getProfile().then(res => {
+      this.setState({ user: res.data.data, loading: false });
+    });
   }
   upload(files) {
     const config = {
@@ -33,6 +38,19 @@ class Setting extends React.Component {
       .catch(err => console.log(err));
   }
   render() {
+    if (this.state.loading) {
+      return (
+        <div
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          loading ...
+        </div>
+      );
+    }
     return (
       <div>
         <Header back history={this.props.history} title="Settings" />
@@ -47,6 +65,10 @@ class Setting extends React.Component {
             }}
           />
         </Label>
+        <img
+          src={`https://8000-port-server.medda-dz.com/${this.state.user.img1}`}
+          style={{ height: 150 }}
+        />
         <button onClick={() => this.upload()}>upload</button>
       </div>
     );
