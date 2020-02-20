@@ -3,13 +3,15 @@ import { withRouter } from "react-router-dom";
 import WebServices from "../components/WebServices";
 import Header from "../components/Header";
 import { Label } from "../components/Ui";
-class Login extends React.Component {
+
+class Setting extends React.Component {
   constructor() {
     super();
     this.state = {
       percentCompleted: 0
     };
     this.fileImg1 = React.createRef();
+    window.fileimg1 = this.fileImg1;
   }
   upload(files) {
     const config = {
@@ -23,7 +25,7 @@ class Login extends React.Component {
     };
 
     let data = new FormData();
-    data.append("file", files[0]);
+    data.append("img1", this.fileImg1.current.files[0]);
 
     WebServices._axios()
       .post("/auth/users/img1", data, config)
@@ -34,12 +36,20 @@ class Login extends React.Component {
     return (
       <div>
         <Header back history={this.props.history} title="Settings" />
-        <div>Settingsdd</div>
         <Label label="بطاقة التعريف الوطنية">
-          <input type="file" />
+          <input ref={this.fileImg1} type="file" />
+          <div
+            style={{
+              backgroundColor: "green",
+              width: `${this.state.percentCompleted}%`,
+              height: 3,
+              margin: 5
+            }}
+          />
         </Label>
+        <button onClick={() => this.upload()}>upload</button>
       </div>
     );
   }
 }
-export default withRouter(Login);
+export default withRouter(Setting);

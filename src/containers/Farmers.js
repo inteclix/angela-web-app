@@ -124,6 +124,7 @@ class Add extends React.Component {
     user_id: 0,
     farmer_number: "",
     farmer_monkharit: false,
+    farmer_monkharit_prix: 0,
     farmer_sex: "man",
     farmer_last_name: "",
     farmer_first_name: "",
@@ -249,6 +250,16 @@ class Add extends React.Component {
               }}
               checked={this.state.farmer_monkharit}
               placeholder="farmer_monkharit"
+            />
+          </Label>
+          <Label label="ثمن الإنخراط">
+            <input
+              onChange={e => {
+                this.setState({ farmer_monkharit_prix: e.target.value });
+              }}
+              value={this.state.farmer_monkharit_prix}
+              placeholder=""
+              type="number"
             />
           </Label>
           <Label label="الجنس">
@@ -423,7 +434,7 @@ class Add extends React.Component {
             >
               <option value="primaire">إبتدائي</option>
               <option value="seam">متوسط</option>
-              <option value="laicy">laicy</option>
+              <option value="laicy">ثانوي</option>
               <option value="mihani">تكوين مهني</option>
               <option value="univ">جامعي</option>
             </select>
@@ -1124,6 +1135,7 @@ class Edit extends React.Component {
       user_id: 0,
       farmer_number: "",
       farmer_monkharit: true,
+      farmer_monkharit_prix: 0,
       farmer_sex: "man",
       farmer_last_name: "",
       farmer_first_name: "",
@@ -1263,6 +1275,16 @@ class Edit extends React.Component {
               }}
               checked={this.state.farmer_monkharit}
               placeholder="farmer_monkharit"
+            />
+          </Label>
+          <Label label="ثمن الإنخراط">
+            <input
+              onChange={e => {
+                this.setState({ farmer_monkharit_prix: e.target.value });
+              }}
+              value={this.state.farmer_monkharit_prix}
+              placeholder=""
+              type="number"
             />
           </Label>
           <Label label="الجنس">
