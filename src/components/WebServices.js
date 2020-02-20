@@ -3,7 +3,7 @@ import axios from "axios";
 class WebServices {
   constructor() {
     this.domain =
-      "https://8000-e8f003b2-6abb-4d25-a42c-544e2c4a4e10.ws-eu01.gitpod.io/api";
+      "https://8000-port-server.medda-dz.com/api";
     this.user = null;
     this.id_token = "token";
   }

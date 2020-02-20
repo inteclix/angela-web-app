@@ -71,7 +71,7 @@ class All extends React.Component {
                 }}
               >
                 <div style={{ flex: 1, padding: 3 }}>
-                  <div>إسم المزرعة  : {farmer.farm_name}</div>
+                  <div>إسم المزرعة : {farmer.farm_name}</div>
                   <div>إنشاء من طرف : {farmer.user.username}</div>
                   <div>تاريخ الإنشاء : {farmer.created_at}</div>
                 </div>
@@ -189,7 +189,7 @@ class Add extends React.Component {
     ri3aya_mantojat_saydalaniya: true,
     ri3aya_mantojat_saydalaniya_no: "",
     ri3aya_mantojat_saydalaniya_yes: "",
-    ri3aya_talki7: "koklafaks",
+    ri3aya_talki7: "",
     ri3aya_talki7_prix: 0,
     ri3aya_adwiya_mosta3mala: "",
     ri3aya_mo3akimat_mosta3mala: "",
@@ -317,7 +317,7 @@ class Add extends React.Component {
               placeholder="farmer_job"
             />
           </Label>
-          <Label label="هل لديك بطاقة منخرط">
+          <Label label="هل لديك بطاقة مربي">
             <input
               type="checkbox"
               onChange={e => {
@@ -381,13 +381,16 @@ class Add extends React.Component {
             />
           </Label>
           <Label label="الحالة">
-            <input
+            <select
               onChange={e => {
                 this.setState({ farm_7ala: e.target.value });
               }}
               value={this.state.farm_7ala}
-              placeholder="farm_7ala"
-            />
+            >
+              <option value="milkia">ملكية</option>
+              <option value="kiraa">كراء</option>
+              <option value="other">شيء آخر</option>
+            </select>
           </Label>
           <Label label="موقع المزرعة بالنسبة للسكان">
             <select
@@ -545,22 +548,19 @@ class Add extends React.Component {
               placeholder="arnab_fathers_prix"
             />
           </Label>
-          <Label label="الأمراض التي يعاني منها القطيع">
-            <select
+          <Label label="لأمراض التي يعاني منها القطيع">
+            <input
+              type="text"
               onChange={e => {
                 this.setState({ arnab_amrad: e.target.value });
               }}
               value={this.state.arnab_amrad}
-            >
-              <option value="tanafos">تنفسية</option>
-              <option value="hadmi">هضمية</option>
-              <option value="virus">فيروسية</option>
-              <option value="bec">بكتيريا</option>
-            </select>
+              placeholder="بكتيريا فيروسية تنفسية هضمية "
+            />
           </Label>
           <Label label="ذروة الإنتاج">
             <input
-              type="number"
+              type="text"
               onChange={e => {
                 this.setState({ arnab_darwa_intaj: e.target.value });
               }}
@@ -570,12 +570,12 @@ class Add extends React.Component {
           </Label>
           <Label label="وقت تجديد القطيع">
             <input
-              type="date"
+              type="text"
               onChange={e => {
                 this.setState({ arnab_date_tajdid_kati3: e.target.value });
               }}
               value={this.state.arnab_date_tajdid_kati3}
-              placeholder="arnab_date_tajdid_kati3"
+              placeholder="شهور التجديد"
             />
           </Label>
           <Label label="رتم الإنتاج">
@@ -638,14 +638,14 @@ class Add extends React.Component {
               }}
               value={this.state.arnab_nissbat_wafayat}
             >
-              <option value="fawk5">فوق 5</option>
-              <option value="istina3i">تحت 5</option>
+              <option value="fawk5">فوق %5</option>
+              <option value="istina3i">تحت %5</option>
             </select>
           </Label>
           <h2 style={{ textAlign: "right", color: "#3F51B5" }}>
             معدات التربية
           </h2>
-          <Label label="عدد الأمبار">
+          <Label label="عدد العنابر">
             <input
               type="number"
               onChange={e => {
@@ -839,11 +839,11 @@ class Add extends React.Component {
                 this.setState({ tagdiya_3ilaf_massa3ib: e.target.value });
               }}
               value={this.state.tagdiya_3ilaf_massa3ib}
-              placeholder="tagdiya_3ilaf_massa3ib"
+              placeholder="ما هي المصاعب؟"
             />
           </Label>
           <h2 style={{ textAlign: "right", color: "#3F51B5" }}>الرعاية</h2>
-          <Label label="عدد الباطرة">
+          <Label label="عدد البياطرة">
             <input
               type="number"
               onChange={e => {
@@ -853,7 +853,7 @@ class Add extends React.Component {
               placeholder="ri3aya_numbers_bayatira"
             />
           </Label>
-          <Label label="هل تستعمل المنتوجات الصيدالانية">
+          <Label label="هل تستعمل المنتوجات الصيدلانية">
             <input
               type="checkbox"
               onChange={e => {
@@ -888,17 +888,14 @@ class Add extends React.Component {
             />
           </Label>
           <Label label="التلقيح">
-            <select
+            <input
+              type="text"
               onChange={e => {
                 this.setState({ ri3aya_talki7: e.target.value });
               }}
               value={this.state.ri3aya_talki7}
-            >
-              <option value="koklafaks">كوكلافاكس</option>
-              <option value="parfak">بارفاك</option>
-              <option value="vhd1">vhd1</option>
-              <option value="vhd2">vhd2</option>
-            </select>
+              placeholder="كوكلافاكس بارفاك vhd1 vhd2"
+            />
           </Label>
           <Label label="ثمن التلقيح">
             <input
@@ -1192,7 +1189,7 @@ class Edit extends React.Component {
       ri3aya_mantojat_saydalaniya: true,
       ri3aya_mantojat_saydalaniya_no: "",
       ri3aya_mantojat_saydalaniya_yes: "",
-      ri3aya_talki7: "koklafaks",
+      ri3aya_talki7: "",
       ri3aya_talki7_prix: 0,
       ri3aya_adwiya_mosta3mala: "",
       ri3aya_mo3akimat_mosta3mala: "",
@@ -1334,7 +1331,7 @@ class Edit extends React.Component {
               placeholder="farmer_job"
             />
           </Label>
-          <Label label="هل لديك بطاقة منخرط">
+          <Label label="هل لديك بطاقة مربي">
             <input
               type="checkbox"
               onChange={e => {
@@ -1398,13 +1395,16 @@ class Edit extends React.Component {
             />
           </Label>
           <Label label="الحالة">
-            <input
+            <select
               onChange={e => {
                 this.setState({ farm_7ala: e.target.value });
               }}
               value={this.state.farm_7ala}
-              placeholder="farm_7ala"
-            />
+            >
+              <option value="milkia">ملكية</option>
+              <option value="kiraa">كراء</option>
+              <option value="other">شيء آخر</option>
+            </select>
           </Label>
           <Label label="موقع المزرعة بالنسبة للسكان">
             <select
@@ -1437,7 +1437,7 @@ class Edit extends React.Component {
             >
               <option value="primaire">إبتدائي</option>
               <option value="seam">متوسط</option>
-              <option value="laicy">laicy</option>
+              <option value="laicy">ثانوي</option>
               <option value="mihani">تكوين مهني</option>
               <option value="univ">جامعي</option>
             </select>
@@ -1562,22 +1562,19 @@ class Edit extends React.Component {
               placeholder="arnab_fathers_prix"
             />
           </Label>
-          <Label label="الأمراض التي يعاني منها القطيع">
-            <select
+          <Label label="لأمراض التي يعاني منها القطيع">
+            <input
+              type="text"
               onChange={e => {
                 this.setState({ arnab_amrad: e.target.value });
               }}
               value={this.state.arnab_amrad}
-            >
-              <option value="tanafos">تنفسية</option>
-              <option value="hadmi">هضمية</option>
-              <option value="virus">فيروسية</option>
-              <option value="bec">بكتيريا</option>
-            </select>
+              placeholder="بكتيريا فيروسية تنفسية هضمية "
+            />
           </Label>
           <Label label="ذروة الإنتاج">
             <input
-              type="number"
+              type="text"
               onChange={e => {
                 this.setState({ arnab_darwa_intaj: e.target.value });
               }}
@@ -1587,12 +1584,12 @@ class Edit extends React.Component {
           </Label>
           <Label label="وقت تجديد القطيع">
             <input
-              type="date"
+              type="text"
               onChange={e => {
                 this.setState({ arnab_date_tajdid_kati3: e.target.value });
               }}
               value={this.state.arnab_date_tajdid_kati3}
-              placeholder="arnab_date_tajdid_kati3"
+              placeholder="شهور التجديد"
             />
           </Label>
           <Label label="رتم الإنتاج">
@@ -1655,14 +1652,14 @@ class Edit extends React.Component {
               }}
               value={this.state.arnab_nissbat_wafayat}
             >
-              <option value="fawk5">فوق 5</option>
-              <option value="istina3i">تحت 5</option>
+              <option value="fawk5">فوق %5</option>
+              <option value="istina3i">تحت %5</option>
             </select>
           </Label>
           <h2 style={{ textAlign: "right", color: "#3F51B5" }}>
             معدات التربية
           </h2>
-          <Label label="عدد الأمبار">
+          <Label label="عدد العنابر">
             <input
               type="number"
               onChange={e => {
@@ -1856,11 +1853,11 @@ class Edit extends React.Component {
                 this.setState({ tagdiya_3ilaf_massa3ib: e.target.value });
               }}
               value={this.state.tagdiya_3ilaf_massa3ib}
-              placeholder="tagdiya_3ilaf_massa3ib"
+              placeholder="ما هي المصاعب؟"
             />
           </Label>
           <h2 style={{ textAlign: "right", color: "#3F51B5" }}>الرعاية</h2>
-          <Label label="عدد الباطرة">
+          <Label label="عدد البياطرة">
             <input
               type="number"
               onChange={e => {
@@ -1870,7 +1867,7 @@ class Edit extends React.Component {
               placeholder="ri3aya_numbers_bayatira"
             />
           </Label>
-          <Label label="هل تستعمل المنتوجات الصيدالانية">
+          <Label label="هل تستعمل المنتوجات الصيدلانية">
             <input
               type="checkbox"
               onChange={e => {
@@ -1905,17 +1902,14 @@ class Edit extends React.Component {
             />
           </Label>
           <Label label="التلقيح">
-            <select
+            <input
+              type="text"
               onChange={e => {
                 this.setState({ ri3aya_talki7: e.target.value });
               }}
               value={this.state.ri3aya_talki7}
-            >
-              <option value="koklafaks">كوكلافاكس</option>
-              <option value="parfak">بارفاك</option>
-              <option value="vhd1">vhd1</option>
-              <option value="vhd2">vhd2</option>
-            </select>
+              placeholder="كوكلافاكس بارفاك vhd1 vhd2"
+            />
           </Label>
           <Label label="ثمن التلقيح">
             <input
