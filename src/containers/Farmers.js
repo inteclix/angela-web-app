@@ -2355,9 +2355,7 @@ class EditImgs extends React.Component {
           />
           <img
             alt=""
-            src={`https://8000-port-server.medda-dz.com/${
-              this.state.farmer_img1
-            }`}
+            src={`https://angela.medda-dz.com/${this.state.farmer_img1}`}
             style={{ height: 150 }}
           />
           <button onClick={() => this.uploadImg1()}>رفع</button>
@@ -2377,9 +2375,7 @@ class EditImgs extends React.Component {
           />
           <img
             alt=""
-            src={`https://8000-port-server.medda-dz.com/${
-              this.state.farmer_img2
-            }`}
+            src={`https://angela.medda-dz.com/${this.state.farmer_img2}`}
             style={{ height: 150 }}
           />
           <button onClick={() => this.uploadImg2()}>رفع</button>
@@ -2399,9 +2395,7 @@ class EditImgs extends React.Component {
           />
           <img
             alt=""
-            src={`https://8000-port-server.medda-dz.com/${
-              this.state.farmer_img3
-            }`}
+            src={`https://angela.medda-dz.com/${this.state.farmer_img3}`}
             style={{ height: 150 }}
           />
           <button onClick={() => this.uploadImg3()}>رفع</button>

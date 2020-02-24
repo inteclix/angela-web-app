@@ -2,7 +2,7 @@ import axios from "axios";
 
 class WebServices {
   constructor() {
-    this.domain = "https://8000-port-server.medda-dz.com/api";
+    this.domain = "https://angela.medda-dz.com/api";
     this.user = null;
     this.id_token = "token";
   }
