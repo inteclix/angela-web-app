@@ -1,7 +1,13 @@
 import React from "react";
 import { withRouter, Route } from "react-router-dom";
 import WebServices from "../components/WebServices";
-import { IoMdTrash, IoMdEye, IoMdAdd, IoIosEye } from "react-icons/io";
+import {
+  IoMdTrash,
+  IoMdEye,
+  IoMdAdd,
+  IoIosEye,
+  IoIosHome
+} from "react-icons/io";
 
 import Header from "../components/Header";
 import Fabs, { Fab } from "../components/Fabs";
@@ -103,6 +109,10 @@ class All extends React.Component {
           <Fab
             Icon={IoMdAdd}
             onClick={() => this.props.history.push("/users/add")}
+          />
+          <Fab
+            Icon={IoIosHome}
+            onClick={() => this.props.history.replace("/")}
           />
         </Fabs>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter, Route } from "react-router-dom";
 import WebServices from "../components/WebServices";
-import { IoMdTrash, IoIosAlbums, IoMdAdd, IoIosEye } from "react-icons/io";
+import { IoMdTrash, IoIosAlbums, IoMdAdd, IoIosEye, IoIosHome } from "react-icons/io";
 
 import Header from "../components/Header";
 import Fabs, { Fab } from "../components/Fabs";
@@ -114,6 +114,10 @@ class All extends React.Component {
           <Fab
             Icon={IoMdAdd}
             onClick={() => this.props.history.push("/farmers/add")}
+          />
+          <Fab
+            Icon={IoIosHome}
+            onClick={() => this.props.history.replace("/")}
           />
         </Fabs>
       </div>
@@ -2378,10 +2382,10 @@ class EditImgs extends React.Component {
             }}
           />
           <img
-                      onError={e =>
-                        (e.target.src =
-                          "https://angela.medda-dz.com/public/KK8CYj6oOKIahTK47GjTm2jAaFXNeI6xqKe67heX.jpeg")
-                      }
+            onError={e =>
+              (e.target.src =
+                "https://angela.medda-dz.com/public/KK8CYj6oOKIahTK47GjTm2jAaFXNeI6xqKe67heX.jpeg")
+            }
             alt=""
             src={`https://angela.medda-dz.com/${this.state.farmer_img2}`}
             style={{ height: 150 }}
@@ -2402,10 +2406,10 @@ class EditImgs extends React.Component {
             }}
           />
           <img
-                      onError={e =>
-                        (e.target.src =
-                          "https://angela.medda-dz.com/public/KK8CYj6oOKIahTK47GjTm2jAaFXNeI6xqKe67heX.jpeg")
-                      }
+            onError={e =>
+              (e.target.src =
+                "https://angela.medda-dz.com/public/KK8CYj6oOKIahTK47GjTm2jAaFXNeI6xqKe67heX.jpeg")
+            }
             alt=""
             src={`https://angela.medda-dz.com/${this.state.farmer_img3}`}
             style={{ height: 150 }}

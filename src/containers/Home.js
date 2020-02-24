@@ -59,10 +59,6 @@ class Home extends React.Component {
             Icon={IoIosNutrition}
             onClick={() => this.props.history.push("/farmers")}
           />
-          <Fab
-            Icon={IoMdSettings}
-            onClick={() => this.props.history.push("/settings")}
-          />
           <Fab Icon={IoIosLogOut} onClick={() => this._logout()} />
         </Fabs>
       </div>
