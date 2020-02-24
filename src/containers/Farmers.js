@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter, Route } from "react-router-dom";
 import WebServices from "../components/WebServices";
-import { IoMdTrash, IoMdEye, IoMdAdd, IoIosEye } from "react-icons/io";
+import { IoMdTrash, IoIosAlbums, IoMdAdd, IoIosEye } from "react-icons/io";
 
 import Header from "../components/Header";
 import Fabs, { Fab } from "../components/Fabs";
@@ -97,6 +97,14 @@ class All extends React.Component {
                   style={{ marginLeft: 10 }}
                   size={32}
                 />
+                <IoIosAlbums
+                  onClick={() =>
+                    this.props.history.push("/farmers/imgs/" + farmer.id)
+                  }
+                  color="#3F51B5"
+                  style={{ marginLeft: 10 }}
+                  size={32}
+                />
               </div>
             ))}
           </div>
@@ -114,105 +122,113 @@ class All extends React.Component {
 }
 
 class Add extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      id: 0,
+      user_id: 0,
+      farmer_number: "",
+      farmer_monkharit: false,
+      farmer_monkharit_prix: 0,
+      farmer_sex: "man",
+      farmer_last_name: "",
+      farmer_first_name: "",
+      farmer_birth_day: "",
+      farmer_address: "",
+      farmer_tel: "",
+      farmer_job: "",
+      farmer_morabi_card: false,
+      farmer_level_educ: "univ",
+      farmer_img1: "",
+      farmer_img2: "",
+      farmer_img3: "",
+      // mazra3a
+      farm_name: "",
+      farm_address: "",
+      farm_wilaya: "",
+      farm_year_begin: "",
+      farm_7ala: "",
+      farm_position_people: "far",
+      farm_geran: "me",
+      farm_geran_level_edcu: "univ",
+      farm_takwin_tarbiyat_aranib: "morabi",
+      farm_takwin_tarbiyat_aranib_year: "",
+      farm_takwin_tarbiyat_aranib_duree: 1,
+      farm_number_employe: 5,
+      // aranib
+      arnab_solala: "hajin",
+      arnab_date_imtilak: "",
+      arnab_imtilak_why: "",
+      arnab_number_mothers: 0,
+      arnab_number_fathers: 0,
+      arnab_mothers_prix: 0.0,
+      arnab_fathers_prix: 0.0,
+      arnab_amrad: "",
+      arnab_darwa_intaj: 0,
+      arnab_date_tajdid_kati3: "",
+      arnab_ratm_intaj: "mokathaf",
+      arnab_3omr_intaj: 0,
+      arnab_naw3_talki7: "tabi3i",
+      arnab_3omr_fitam: 0,
+      arnab_motawassit_intaj: 0,
+      arnab_nissbat_wafayat: "fawk5",
+      // mo3idat tarbiya
+      mo3idat_numbers_ambar: 0,
+      mo3idat_missa7a_ambar: 0,
+      mo3idat_gaz: true,
+      mo3idat_eau: true,
+      mo3idat_elect: true,
+      mo3idat_khazan_eau: true,
+      mo3idat_khazan_eau_si3a: 0,
+      mo3idat_madba7_wilaya: true,
+      mo3idat_mosta3mala_7arara_tahwiya: "",
+      mo3idat_akfass_total: 0,
+      mo3idat_akfass_mothers: 0,
+      mo3idat_akfass_fathers: 0,
+      mo3idat_akfass_tassmin: 0,
+      mo3idat_naw3_akfass: "ma7ali",
+      // tagdiya
+      tagdiya_name_3ilaf: "sim",
+      tagdiya_3ilaf_mada_idafiya: true,
+      tagdiya_3ilaf_tarika_chiraa: "derect",
+      tagdiya_3ilaf_prix: 0.0,
+      tagdiya_3ilaf_massa3ib: "",
+      // ri3aya
+      ri3aya_numbers_bayatira: 0,
+      ri3aya_mantojat_saydalaniya: true,
+      ri3aya_mantojat_saydalaniya_no: "",
+      ri3aya_mantojat_saydalaniya_yes: "",
+      ri3aya_talki7: "",
+      ri3aya_talki7_prix: 0,
+      ri3aya_adwiya_mosta3mala: "",
+      ri3aya_mo3akimat_mosta3mala: "",
+      ri3aya_tamtalik_i3timad_si7i: true,
+      // tasswik,
+      tasswik_motawassit_wazn_bay3_arnab: 0,
+      tasswik_kayfiyat_bay3: "arnab",
+      tasswik_prix_arnab_kg: 0.0,
+      tasswik_ayna_yatim_bay3: "dakhil_ambar",
+      tasswik_morakib_si7i_dab7: true,
+      tasswik_barnamaj_dab7: "monadam",
+      tasswik_zabon_raissi: "wassit",
+      tasswik_rotab_mostahlikin: "",
+      tasswik_bay3_montadam_nafss_kamiya: true,
+      tasswik_numbers_bay3_montadam_nafss_kamiya: 0,
+      tasswik_kayfiya_takhzin: "madbo7",
+      tasswik_modat_takhzin: "motawassita",
+      tasswik_machakil: "motadabdib",
+      tasswik_ishar_li_mantojk: true,
+      tasswik_ishar_li_mantojk_how: "",
+      tasswik_ishar_li_mantojk_radat_fi3l: "lamobalat"
+    };
+  }
+
   componentDidMount() {
     WebServices.getProfile().then(res => {
       this.setState({ user_id: res.data.data.id });
     });
   }
-  state = {
-    id: 0,
-    user_id: 0,
-    farmer_number: "",
-    farmer_monkharit: false,
-    farmer_monkharit_prix: 0,
-    farmer_sex: "man",
-    farmer_last_name: "",
-    farmer_first_name: "",
-    farmer_birth_day: "",
-    farmer_address: "",
-    farmer_tel: "",
-    farmer_job: "",
-    farmer_morabi_card: false,
-    farmer_level_educ: "univ",
-    // mazra3a
-    farm_name: "",
-    farm_address: "",
-    farm_wilaya: "",
-    farm_year_begin: "",
-    farm_7ala: "",
-    farm_position_people: "far",
-    farm_geran: "me",
-    farm_geran_level_edcu: "univ",
-    farm_takwin_tarbiyat_aranib: "morabi",
-    farm_takwin_tarbiyat_aranib_year: "",
-    farm_takwin_tarbiyat_aranib_duree: 1,
-    farm_number_employe: 5,
-    // aranib
-    arnab_solala: "hajin",
-    arnab_date_imtilak: "",
-    arnab_imtilak_why: "",
-    arnab_number_mothers: 0,
-    arnab_number_fathers: 0,
-    arnab_mothers_prix: 0.0,
-    arnab_fathers_prix: 0.0,
-    arnab_amrad: "",
-    arnab_darwa_intaj: 0,
-    arnab_date_tajdid_kati3: "",
-    arnab_ratm_intaj: "mokathaf",
-    arnab_3omr_intaj: 0,
-    arnab_naw3_talki7: "tabi3i",
-    arnab_3omr_fitam: 0,
-    arnab_motawassit_intaj: 0,
-    arnab_nissbat_wafayat: "fawk5",
-    // mo3idat tarbiya
-    mo3idat_numbers_ambar: 0,
-    mo3idat_missa7a_ambar: 0,
-    mo3idat_gaz: true,
-    mo3idat_eau: true,
-    mo3idat_elect: true,
-    mo3idat_khazan_eau: true,
-    mo3idat_khazan_eau_si3a: 0,
-    mo3idat_madba7_wilaya: true,
-    mo3idat_mosta3mala_7arara_tahwiya: "",
-    mo3idat_akfass_total: 0,
-    mo3idat_akfass_mothers: 0,
-    mo3idat_akfass_fathers: 0,
-    mo3idat_akfass_tassmin: 0,
-    mo3idat_naw3_akfass: "ma7ali",
-    // tagdiya
-    tagdiya_name_3ilaf: "sim",
-    tagdiya_3ilaf_mada_idafiya: true,
-    tagdiya_3ilaf_tarika_chiraa: "derect",
-    tagdiya_3ilaf_prix: 0.0,
-    tagdiya_3ilaf_massa3ib: "",
-    // ri3aya
-    ri3aya_numbers_bayatira: 0,
-    ri3aya_mantojat_saydalaniya: true,
-    ri3aya_mantojat_saydalaniya_no: "",
-    ri3aya_mantojat_saydalaniya_yes: "",
-    ri3aya_talki7: "",
-    ri3aya_talki7_prix: 0,
-    ri3aya_adwiya_mosta3mala: "",
-    ri3aya_mo3akimat_mosta3mala: "",
-    ri3aya_tamtalik_i3timad_si7i: true,
-    // tasswik,
-    tasswik_motawassit_wazn_bay3_arnab: 0,
-    tasswik_kayfiyat_bay3: "arnab",
-    tasswik_prix_arnab_kg: 0.0,
-    tasswik_ayna_yatim_bay3: "dakhil_ambar",
-    tasswik_morakib_si7i_dab7: true,
-    tasswik_barnamaj_dab7: "monadam",
-    tasswik_zabon_raissi: "wassit",
-    tasswik_rotab_mostahlikin: "",
-    tasswik_bay3_montadam_nafss_kamiya: true,
-    tasswik_numbers_bay3_montadam_nafss_kamiya: 0,
-    tasswik_kayfiya_takhzin: "madbo7",
-    tasswik_modat_takhzin: "motawassita",
-    tasswik_machakil: "motadabdib",
-    tasswik_ishar_li_mantojk: true,
-    tasswik_ishar_li_mantojk_how: "",
-    tasswik_ishar_li_mantojk_radat_fi3l: "lamobalat"
-  };
+
   _create() {
     WebServices.addFarmer({ ...this.state })
       .then(res => {
@@ -352,6 +368,7 @@ class Add extends React.Component {
               <option value="univ">جامعي</option>
             </select>
           </Label>
+
           <h2 style={{ textAlign: "right", color: "#3F51B5" }}>
             معلومات عن المزرعة
           </h2>
@@ -1145,6 +1162,9 @@ class Edit extends React.Component {
       farmer_job: "",
       farmer_morabi_card: false,
       farmer_level_educ: "univ",
+      farmer_img1: "",
+      farmer_img2: "",
+      farmer_img3: "",
       // mazra3a
       farm_name: "",
       farm_address: "",
@@ -1236,6 +1256,64 @@ class Edit extends React.Component {
         alert(err);
         this.setState({ loading: false });
       });
+  }
+
+  uploadImg1() {
+    const config = {
+      onUploadProgress: progressEvent => {
+        var percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        console.log(percentCompleted);
+        this.setState({ percentCompleted });
+      }
+    };
+
+    let data = new FormData();
+    data.append("img1", this.fileImg1.current.files[0]);
+
+    WebServices._axios()
+      .post("/farmers/img1", data, config)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
+  uploadImg2() {
+    const config = {
+      onUploadProgress: progressEvent => {
+        var percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        console.log(percentCompleted);
+        this.setState({ percentCompleted });
+      }
+    };
+
+    let data = new FormData();
+    data.append("img2", this.fileImg1.current.files[0]);
+
+    WebServices._axios()
+      .post("/farmers/img2", data, config)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
+  uploadImg3() {
+    const config = {
+      onUploadProgress: progressEvent => {
+        var percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        console.log(percentCompleted);
+        this.setState({ percentCompleted });
+      }
+    };
+
+    let data = new FormData();
+    data.append("img3", this.fileImg1.current.files[0]);
+
+    WebServices._axios()
+      .post("/farmers/img3", data, config)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
   _update() {
@@ -2152,6 +2230,187 @@ class Edit extends React.Component {
   }
 }
 
+class EditImgs extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      loading: true,
+      percentCompletedImg1: 0,
+      percentCompletedImg2: 0,
+      percentCompletedImg3: 0,
+      farmerId: 0,
+      farmer_img1: "",
+      farmer_img2: "",
+      farmer_img3: ""
+    };
+    this.fileImg1 = React.createRef();
+    this.fileImg2 = React.createRef();
+    this.fileImg3 = React.createRef();
+  }
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    WebServices.getFarmer(id)
+      .then(res => {
+        const data = res.data.data;
+        this.setState({
+          farmerId: id,
+          farmer_img1: data.farmer_img1,
+          farmer_img2: data.farmer_img2,
+          farmer_img3: data.farmer_img3,
+          loading: false
+        });
+      })
+      .catch(err => {
+        alert(err);
+        this.setState({ loading: false });
+      });
+  }
+  uploadImg1() {
+    const config = {
+      onUploadProgress: progressEvent => {
+        var percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        console.log(percentCompleted);
+        this.setState({ percentCompletedImg1: percentCompleted });
+      }
+    };
+
+    let data = new FormData();
+    data.append("fileImg1", this.fileImg1.current.files[0]);
+
+    WebServices._axios()
+      .post("/farmers/img1/" + this.state.farmerId, data, config)
+      .then(res => console.log(res))
+      .catch(err => this.setState({ percentCompletedImg1: 100.0000001 }));
+  }
+  uploadImg2() {
+    const config = {
+      onUploadProgress: progressEvent => {
+        var percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        console.log(percentCompleted);
+        this.setState({ percentCompletedImg2: percentCompleted });
+      }
+    };
+
+    let data = new FormData();
+    data.append("fileImg2", this.fileImg2.current.files[0]);
+
+    WebServices._axios()
+      .post("/farmers/img2/" + this.state.farmerId, data, config)
+      .then(res => console.log(res))
+      .catch(err => this.setState({ percentCompletedImg2: 100.0000001 }));
+  }
+  uploadImg3() {
+    const config = {
+      onUploadProgress: progressEvent => {
+        var percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        console.log(percentCompleted);
+        this.setState({ percentCompletedImg3: percentCompleted });
+      }
+    };
+
+    let data = new FormData();
+    data.append("fileImg3", this.fileImg3.current.files[0]);
+
+    WebServices._axios()
+      .post("/farmers/img3/" + this.state.farmerId, data, config)
+      .then(res => console.log(res))
+      .catch(err => this.setState({ percentCompletedImg3: 100.0000001 }));
+  }
+
+  render() {
+    if (this.state.loading) {
+      return (
+        <div
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          loading ...
+        </div>
+      );
+    }
+    return (
+      <div>
+        <Header back history={this.props.history} title="تعديل الصور" />
+        <Label label="صورة شمسية">
+          <input ref={this.fileImg1} type="file" />
+          <div
+            style={{
+              backgroundColor:
+                this.state.percentCompletedImg1 === 100.0000001
+                  ? "red"
+                  : "green",
+              width: `${this.state.percentCompletedImg1}%`,
+              height: 3,
+              margin: 5
+            }}
+          />
+          <img
+            alt=""
+            src={`https://8000-port-server.medda-dz.com/${
+              this.state.farmer_img1
+            }`}
+            style={{ height: 150 }}
+          />
+          <button onClick={() => this.uploadImg1()}>رفع</button>
+        </Label>
+        <Label label="بطاقة التعريف الوطنية">
+          <input ref={this.fileImg2} type="file" />
+          <div
+            style={{
+              backgroundColor:
+                this.state.percentCompletedImg2 === 100.0000001
+                  ? "red"
+                  : "green",
+              width: `${this.state.percentCompletedImg2}%`,
+              height: 3,
+              margin: 5
+            }}
+          />
+          <img
+            alt=""
+            src={`https://8000-port-server.medda-dz.com/${
+              this.state.farmer_img2
+            }`}
+            style={{ height: 150 }}
+          />
+          <button onClick={() => this.uploadImg2()}>رفع</button>
+        </Label>
+        <Label label="وصل البريد">
+          <input ref={this.fileImg3} type="file" />
+          <div
+            style={{
+              backgroundColor:
+                this.state.percentCompletedImg3 === 100.0000001
+                  ? "red"
+                  : "green",
+              width: `${this.state.percentCompletedImg3}%`,
+              height: 3,
+              margin: 5
+            }}
+          />
+          <img
+            alt=""
+            src={`https://8000-port-server.medda-dz.com/${
+              this.state.farmer_img3
+            }`}
+            style={{ height: 150 }}
+          />
+          <button onClick={() => this.uploadImg3()}>رفع</button>
+        </Label>
+      </div>
+    );
+  }
+}
+
 class Users extends React.Component {
   render() {
     return (
@@ -2159,6 +2418,7 @@ class Users extends React.Component {
         <Route exact path="/farmers" component={All} />
         <Route path="/farmers/add" component={Add} />
         <Route path="/farmers/edit/:id" component={Edit} />
+        <Route exact path="/farmers/imgs/:id/" component={EditImgs} />
       </div>
     );
   }

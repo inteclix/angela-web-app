@@ -67,7 +67,7 @@ class Setting extends React.Component {
         </Label>
         <img
           alt=""
-          src={`https://angela.medda-dz.com/${this.state.user.img1}`}
+          src={`https://8000-port-server.medda-dz.com/${this.state.user.img1}`}
           style={{ height: 150 }}
         />
         <button onClick={() => this.upload()}>upload</button>
