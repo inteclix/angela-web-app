@@ -2354,6 +2354,10 @@ class EditImgs extends React.Component {
             }}
           />
           <img
+            onError={e =>
+              (e.target.src =
+                "https://angela.medda-dz.com/public/KK8CYj6oOKIahTK47GjTm2jAaFXNeI6xqKe67heX.jpeg")
+            }
             alt=""
             src={`https://angela.medda-dz.com/${this.state.farmer_img1}`}
             style={{ height: 150 }}
@@ -2374,6 +2378,10 @@ class EditImgs extends React.Component {
             }}
           />
           <img
+                      onError={e =>
+                        (e.target.src =
+                          "https://angela.medda-dz.com/public/KK8CYj6oOKIahTK47GjTm2jAaFXNeI6xqKe67heX.jpeg")
+                      }
             alt=""
             src={`https://angela.medda-dz.com/${this.state.farmer_img2}`}
             style={{ height: 150 }}
@@ -2394,6 +2402,10 @@ class EditImgs extends React.Component {
             }}
           />
           <img
+                      onError={e =>
+                        (e.target.src =
+                          "https://angela.medda-dz.com/public/KK8CYj6oOKIahTK47GjTm2jAaFXNeI6xqKe67heX.jpeg")
+                      }
             alt=""
             src={`https://angela.medda-dz.com/${this.state.farmer_img3}`}
             style={{ height: 150 }}
