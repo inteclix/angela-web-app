@@ -29,7 +29,7 @@ class All extends React.Component {
         this.setState({ users: res.data.data, loading: false });
       })
       .catch(err => {
-        alert(err);
+        alert("حدث خطأ ما");
         this.setState({ loading: false });
       });
   }
@@ -86,7 +86,7 @@ class All extends React.Component {
                     );
                     quetion &&
                       WebServices.deleteUser(user.id).then(res => {
-                        alert("User deleted success");
+                        alert("تم الحذف");
                         this.init();
                       });
                   }}
@@ -137,11 +137,11 @@ class Add extends React.Component {
   _create() {
     WebServices.addUser({ ...this.state })
       .then(res => {
-        alert("user created success");
+        //alert("user created success");
         this.props.history.replace("/users");
       })
       .catch(err => {
-        alert(err);
+        alert("حدث خطأ ما");
       });
   }
   render() {
@@ -249,18 +249,18 @@ class Edit extends React.Component {
         this.setState({ ...data, loading: false });
       })
       .catch(err => {
-        alert(err);
+        alert("حدث خطأ ما");
         this.setState({ loading: false });
       });
   }
   _update() {
     WebServices.editUser({ ...this.state })
       .then(res => {
-        alert("user updated success");
+        //alert("user updated success");
         this.props.history.replace("/users");
       })
       .catch(err => {
-        alert(err);
+        alert("حدث خطأ ما");
       });
   }
   render() {

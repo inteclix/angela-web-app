@@ -6,7 +6,8 @@ import {
   IoIosPerson,
   IoIosLogOut,
   IoMdSettings,
-  IoIosNutrition
+  IoIosNutrition,
+  IoIosDocument
 } from "react-icons/io";
 
 import Header from "../components/Header";
@@ -17,12 +18,24 @@ class Home extends React.Component {
     super();
     this.state = {
       user: null,
+      numberFarmers: 0,
+      numberUsers: 0,
       loading: true
     };
   }
   componentDidMount() {
     WebServices.getProfile().then(res => {
-      this.setState({ user: res.data.data, loading: false });
+      this.setState({ user: res.data.data });
+      WebServices._axios()
+        .get("/state/numbers_farmers_users")
+        .then(res => {
+          this.setState({
+            numberFarmers: res.data.nb_farmers,
+            numberUsers: res.data.nb_users,
+            loading: false
+          });
+        })
+        .catch(err => {});
     });
   }
   _logout() {
@@ -45,8 +58,23 @@ class Home extends React.Component {
     }
     return (
       <div>
-        <Header history={this.props.history} title="Home" />
-        <div style={{ flex: 1, padding: 5 }} />
+        <Header history={this.props.history} title="الرئيسية" />
+        <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
+          {this.state.user.role === "admin" && (
+            <h3>عدد المستخدمين : {this.state.numberUsers}</h3>
+          )}
+          <h3>عدد المربين : {this.state.numberFarmers}</h3>
+        </div>
+
+        <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
+          <button>
+            <IoIosDocument
+              size={32}
+              style={{ marginRight: 10, marginLeft: 10 }}
+            />
+            تحميل ملف الإكسيل
+          </button>
+        </div>
 
         <Fabs>
           {this.state.user !== null && this.state.user.role === "admin" && (
