@@ -1,6 +1,7 @@
 import axios from "axios";
 
 class WebServices {
+  static __axios = null;
   constructor() {
     this.domain = "https://angela.medda-dz.com/api";
     this.user = null;
@@ -139,12 +140,17 @@ class WebServices {
       "Content-Type": "application/json",
       Authorization: "Bearer " + this.getToken()
     };
-
-    return axios.create({
-      baseURL: this.domain,
-      headers,
-      ...options
-    });
+    if (this.__axios == null) {
+      this.__axios = axios.create({
+        baseURL: this.domain,
+        headers,
+        ...options
+      });
+    } else {
+      this.__axios.defaults.headers.Authorization = "Bearer " + this.getToken();
+    }
+    window.__axios = this.__axios;
+    return this.__axios;
   }
 
   _checkStatus(response) {

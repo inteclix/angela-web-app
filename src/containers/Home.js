@@ -58,12 +58,21 @@ class Home extends React.Component {
     }
     return (
       <div>
-        <Header history={this.props.history} title="الرئيسية" />
+        <Header
+          history={this.props.history}
+          title={`${this.state.user.username}`}
+        />
         <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
           {this.state.user.role === "admin" && (
-            <h3>عدد المستخدمين : {this.state.numberUsers}</h3>
+            <h2>
+              عدد المستخدمين <IoIosPerson size={24} /> :{"  "}
+              {this.state.numberUsers}{" "}
+            </h2>
           )}
-          <h3>عدد المربين : {this.state.numberFarmers}</h3>
+          <h2>
+            عدد المربين <IoIosNutrition size={24} /> :{"  "}
+            {this.state.numberFarmers}{" "}
+          </h2>
         </div>
 
         <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
