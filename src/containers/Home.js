@@ -59,7 +59,14 @@ class Home extends React.Component {
       );
     }
     return (
-      <div>
+      <div
+        style={{
+          flex: 1,
+          backgroundImage: "linear-gradient(to top left, white, #b2bbe8)",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
         <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
           {this.state.user.role === "admin" && (
             <h2>
