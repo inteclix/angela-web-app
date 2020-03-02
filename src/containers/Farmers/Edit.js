@@ -1,5 +1,5 @@
 import React from "react";
-import { HashLoader } from "react-spinners";
+import { PropagateLoader } from "react-spinners";
 
 import WebServices from "../../components/WebServices";
 import Header from "../../components/Header";
@@ -198,7 +198,7 @@ class Edit extends React.Component {
             alignItems: "center"
           }}
         >
-          <HashLoader />
+          <PropagateLoader />
         </div>
       );
     }

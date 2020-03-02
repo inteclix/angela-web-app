@@ -10,7 +10,7 @@ import {
   IoIosDocument
 } from "react-icons/io";
 import axios from "axios";
-import { HashLoader } from "react-spinners";
+import { PropagateLoader } from "react-spinners";
 import Header from "../components/Header";
 import Fabs, { Fab } from "../components/Fabs";
 import Axios from "axios";
@@ -54,7 +54,7 @@ class Home extends React.Component {
             alignItems: "center"
           }}
         >
-          <HashLoader />
+          <PropagateLoader />
         </div>
       );
     }
