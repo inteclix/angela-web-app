@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import WebServices from "./WebServices";
 import axios from "axios";
+import { HashLoader } from "react-spinners";
+
 export default function withAuth(AuthComponent) {
   return withRouter(
     class AuthWrapped extends Component {
@@ -51,7 +53,7 @@ export default function withAuth(AuthComponent) {
                 flex: 1
               }}
             >
-              loading ...
+              <HashLoader />
             </div>
           );
         }

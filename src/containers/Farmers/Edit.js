@@ -1,4 +1,5 @@
 import React from "react";
+import { HashLoader } from "react-spinners";
 
 import WebServices from "../../components/WebServices";
 import Header from "../../components/Header";
@@ -8,6 +9,7 @@ class Edit extends React.Component {
   constructor() {
     super();
     this.state = {
+      loading: true,
       id: 0,
       user_id: 0,
       farmer_number: "",
@@ -187,6 +189,19 @@ class Edit extends React.Component {
       });
   }
   render() {
+    if (this.state.loading) {
+      return (
+        <div
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <HashLoader />
+        </div>
+      );
+    }
     return (
       <div>
         <Header back history={this.props.history} title="تعديل" />

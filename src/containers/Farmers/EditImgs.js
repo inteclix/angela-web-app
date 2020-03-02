@@ -1,5 +1,6 @@
 import React from "react";
 import WebServices from "../../components/WebServices";
+import { HashLoader } from "react-spinners";
 
 import Header from "../../components/Header";
 import { Label } from "../../components/Ui";
@@ -123,7 +124,7 @@ class EditImgs extends React.Component {
             alignItems: "center"
           }}
         >
-          loading ...
+          <HashLoader />
         </div>
       );
     }

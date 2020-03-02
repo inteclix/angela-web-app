@@ -9,9 +9,11 @@ import {
   IoIosNutrition,
   IoIosDocument
 } from "react-icons/io";
-
+import axios from "axios";
+import { HashLoader } from "react-spinners";
 import Header from "../components/Header";
 import Fabs, { Fab } from "../components/Fabs";
+import Axios from "axios";
 
 class Home extends React.Component {
   constructor() {
@@ -52,16 +54,12 @@ class Home extends React.Component {
             alignItems: "center"
           }}
         >
-          loading ...
+          <HashLoader />
         </div>
       );
     }
     return (
       <div>
-        <Header
-          history={this.props.history}
-          title={`${this.state.user.username}`}
-        />
         <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
           {this.state.user.role === "admin" && (
             <h2>
@@ -76,7 +74,18 @@ class Home extends React.Component {
         </div>
 
         <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
-          <button>
+          <button
+            onClick={() => {
+              axios({
+                url: WebServices.domain + "/state/farmers_excel",
+                method: "GET",
+                responseType: "blob", // important
+                headers: {
+                  Authorization: "Bearer " + WebServices.getToken()
+                }
+              }).then(response => {});
+            }}
+          >
             <IoIosDocument
               size={32}
               style={{ marginRight: 10, marginLeft: 10 }}

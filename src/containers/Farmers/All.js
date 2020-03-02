@@ -7,6 +7,7 @@ import {
   IoIosEye,
   IoIosHome
 } from "react-icons/io";
+import { HashLoader } from "react-spinners";
 
 import Header from "../../components/Header";
 import Fabs, { Fab } from "../../components/Fabs";
@@ -42,7 +43,7 @@ class All extends React.Component {
             alignItems: "center"
           }}
         >
-          loading ...
+          <HashLoader />
         </div>
       );
     }
@@ -85,9 +86,7 @@ class All extends React.Component {
                 </div>
                 <IoMdTrash
                   onClick={() => {
-                    const quetion = window.confirm(
-                      "Are you sure to delete this user: " + farmer.id
-                    );
+                    const quetion = window.confirm("هل تريد فعلا الحذف ");
                     quetion &&
                       WebServices.deleteFarmer(farmer.id).then(res => {
                         alert("تم الحذف");
