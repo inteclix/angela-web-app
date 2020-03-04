@@ -24,7 +24,14 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <div className="login">
+      <div
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+        className="login"
+      >
         <img
           alt=""
           style={{

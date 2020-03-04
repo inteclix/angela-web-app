@@ -14,6 +14,7 @@ import { PropagateLoader } from "react-spinners";
 import Header from "../components/Header";
 import Fabs, { Fab } from "../components/Fabs";
 import Axios from "axios";
+import { Bar } from "react-chartjs-2";
 
 class Home extends React.Component {
   constructor() {
@@ -58,6 +59,20 @@ class Home extends React.Component {
         </div>
       );
     }
+    const data = {
+      labels: ["المستخدمين", "المربيين", ""],
+      datasets: [
+        {
+          label: "عدد الإحصائيات",
+          backgroundColor: "rgba(255,99,132,0.2)",
+          borderColor: "rgba(255,99,132,1)",
+          borderWidth: 1,
+          hoverBackgroundColor: "rgba(255,99,132,0.4)",
+          hoverBorderColor: "rgba(255,99,132,1)",
+          data: [this.state.numberUsers, this.state.numberFarmers, 0]
+        }
+      ]
+    };
     return (
       <div
         style={{
@@ -67,18 +82,7 @@ class Home extends React.Component {
           alignItems: "center"
         }}
       >
-        <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
-          {this.state.user.role === "admin" && (
-            <h2>
-              عدد المستخدمين <IoIosPerson size={24} /> :{"  "}
-              {this.state.numberUsers}{" "}
-            </h2>
-          )}
-          <h2>
-            عدد المربين <IoIosNutrition size={24} /> :{"  "}
-            {this.state.numberFarmers}{" "}
-          </h2>
-        </div>
+        <Bar data={data} />
 
         <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
           <button
