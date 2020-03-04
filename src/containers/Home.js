@@ -59,17 +59,31 @@ class Home extends React.Component {
         </div>
       );
     }
-    const data = {
-      labels: ["المستخدمين", "المربيين", ""],
+    const dataUsers = {
+      labels: ["المستخدمين", ""],
       datasets: [
         {
-          label: "عدد الإحصائيات",
-          backgroundColor: "rgba(255,99,132,0.2)",
-          borderColor: "rgba(255,99,132,1)",
+          label: "عدد المستخدمين",
+          backgroundColor: "rgba(76,175,80,0.2)",
+          borderColor: "rgba(76,175,80,1)",
           borderWidth: 1,
-          hoverBackgroundColor: "rgba(255,99,132,0.4)",
-          hoverBorderColor: "rgba(255,99,132,1)",
-          data: [this.state.numberUsers, this.state.numberFarmers, 0]
+          hoverBackgroundColor: "rgba(76,175,80,0.4)",
+          hoverBorderColor: "rgba(76,175,80,1)",
+          data: [this.state.numberUsers, 0]
+        }
+      ]
+    };
+    const dataFarmers = {
+      labels: ["المربيين", ""],
+      datasets: [
+        {
+          label: "عدد المربيين",
+          backgroundColor: "rgba(3,169,244,0.2)",
+          borderColor: "rgba(3,169,244,1)",
+          borderWidth: 1,
+          hoverBackgroundColor: "rgba(3,169,244,0.4)",
+          hoverBorderColor: "rgba(3,169,244,1)",
+          data: [this.state.numberFarmers, 0]
         }
       ]
     };
@@ -77,34 +91,53 @@ class Home extends React.Component {
       <div
         style={{
           flex: 1,
-          backgroundImage: "linear-gradient(to top left, white, #b2bbe8)",
-          justifyContent: "center",
-          alignItems: "center"
+          backgroundImage: `url(${require("../images/bg.png")})`
         }}
       >
-        <Bar data={data} />
-
-        <div style={{ textAlign: "right", margin: 5, padding: 5 }}>
-          <button
-            onClick={() => {
-              axios({
-                url: WebServices.domain + "/state/farmers_excel",
-                method: "GET",
-                responseType: "blob", // important
-                headers: {
-                  Authorization: "Bearer " + WebServices.getToken()
-                }
-              }).then(response => {});
+        <div
+          style={{
+            margin: 10,
+            marginLeft: 5,
+            marginRight: 5,
+            borderRadius: 5,
+            backgroundColor: "white"
+          }}
+        >
+          <img
+            alt=""
+            style={{
+              height: 100,
+              width: 100,
+              alignSelf: "center",
+              margin: 20
             }}
-          >
-            <IoIosDocument
-              size={32}
-              style={{ marginRight: 10, marginLeft: 10 }}
-            />
-            تحميل ملف الإكسيل
-          </button>
+            src={require("../images/logo.jpg")}
+          />
         </div>
 
+        <div
+          style={{
+            margin: 10,
+            marginLeft: 5,
+            marginRight: 5,
+            borderRadius: 5,
+            backgroundColor: "white"
+          }}
+        >
+          <Bar data={dataUsers} />
+        </div>
+
+        <div
+          style={{
+            margin: 10,
+            marginLeft: 5,
+            marginRight: 5,
+            borderRadius: 5,
+            backgroundColor: "white"
+          }}
+        >
+          <Bar data={dataFarmers} />
+        </div>
         <Fabs>
           {this.state.user !== null && this.state.user.role === "admin" && (
             <Fab
