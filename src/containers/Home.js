@@ -91,7 +91,7 @@ class Home extends React.Component {
       <div
         style={{
           flex: 1,
-          backgroundImage: `url(${require("../images/bg.png")})`
+          backgroundImage: "linear-gradient(to top left, white, #b2bbe8)"
         }}
       >
         <div
