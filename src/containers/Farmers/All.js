@@ -7,6 +7,9 @@ import {
   IoIosEye,
   IoIosHome
 } from "react-icons/io";
+
+import { FaFileExcel } from "react-icons/fa";
+
 import { PropagateLoader } from "react-spinners";
 
 import Header from "../../components/Header";
@@ -125,6 +128,18 @@ class All extends React.Component {
           <Fab
             Icon={IoIosHome}
             onClick={() => this.props.history.replace("/")}
+          />
+          <Fab
+            Icon={FaFileExcel}
+            onClick={() => {
+              const win = window.open(
+                "https://angela.medda-dz.com/api/state/test",
+                "_blank"
+              );
+              if (win != null) {
+                win.focus();
+              }
+            }}
           />
         </Fabs>
       </div>
