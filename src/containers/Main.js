@@ -7,6 +7,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Users from "./Users";
 import Farmers from "./Farmers";
+import About from "./About";
 
 class Main extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class Main extends React.Component {
         <Route path="/users" component={Users} />
         <Route path="/farmers" component={Farmers} />
         <Route exact path="/login" component={Login} />
+        <Route path="/about" component={About} />
       </Switch>
     );
   }

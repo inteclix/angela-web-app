@@ -7,7 +7,8 @@ import {
   IoIosLogOut,
   IoMdSettings,
   IoIosNutrition,
-  IoIosDocument
+  IoIosDocument,
+  IoIosHelpCircleOutline
 } from "react-icons/io";
 import axios from "axios";
 import { PropagateLoader } from "react-spinners";
@@ -148,6 +149,10 @@ class Home extends React.Component {
           <Fab
             Icon={IoIosNutrition}
             onClick={() => this.props.history.push("/farmers")}
+          />
+          <Fab
+            Icon={IoIosHelpCircleOutline}
+            onClick={() => this.props.history.push("/about")}
           />
           <Fab Icon={IoIosLogOut} onClick={() => this._logout()} />
         </Fabs>
